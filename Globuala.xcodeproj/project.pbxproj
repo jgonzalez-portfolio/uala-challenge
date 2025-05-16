@@ -47,22 +47,16 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		F206C02A2DD7091700A42969 /* Globuala */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = Globuala;
 			sourceTree = "<group>";
 		};
 		F206C03B2DD7091800A42969 /* GlobualaTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = GlobualaTests;
 			sourceTree = "<group>";
 		};
 		F206C0452DD7091800A42969 /* GlobualaUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = GlobualaUITests;
 			sourceTree = "<group>";
 		};
@@ -116,7 +110,6 @@
 				3DE8C63FF8D38E64F0C06C8F /* Pods-GlobualaTests.debug.xcconfig */,
 				19CF6E2D0B35A9318F966CE1 /* Pods-GlobualaTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
