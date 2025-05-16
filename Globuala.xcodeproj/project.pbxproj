@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		9D1763C435EE6D0BE6446F92 /* Pods_GlobualaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831A85C78DF4AA45BD580BDF /* Pods_GlobualaTests.framework */; };
+		FB856DE9D9E34AAF486D0E1F /* Pods_Globuala_GlobualaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93F88166111A6B3E5C0C1127 /* Pods_Globuala_GlobualaUITests.framework */; };
+		FCCD515307E2BA66E49BA0CF /* Pods_Globuala.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DC4F2556F8D85DB90D9196 /* Pods_Globuala.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		F206C0392DD7091800A42969 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +30,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19CF6E2D0B35A9318F966CE1 /* Pods-GlobualaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlobualaTests.release.xcconfig"; path = "Target Support Files/Pods-GlobualaTests/Pods-GlobualaTests.release.xcconfig"; sourceTree = "<group>"; };
+		3DE8C63FF8D38E64F0C06C8F /* Pods-GlobualaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GlobualaTests.debug.xcconfig"; path = "Target Support Files/Pods-GlobualaTests/Pods-GlobualaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4FF51198B5BBC6776A9F05E2 /* Pods-Globuala-GlobualaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Globuala-GlobualaUITests.release.xcconfig"; path = "Target Support Files/Pods-Globuala-GlobualaUITests/Pods-Globuala-GlobualaUITests.release.xcconfig"; sourceTree = "<group>"; };
+		65DC4F2556F8D85DB90D9196 /* Pods_Globuala.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Globuala.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		81AC748758EE5C37D2670F89 /* Pods-Globuala.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Globuala.release.xcconfig"; path = "Target Support Files/Pods-Globuala/Pods-Globuala.release.xcconfig"; sourceTree = "<group>"; };
+		82F19A54A46546A0549C9D30 /* Pods-Globuala.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Globuala.debug.xcconfig"; path = "Target Support Files/Pods-Globuala/Pods-Globuala.debug.xcconfig"; sourceTree = "<group>"; };
+		831A85C78DF4AA45BD580BDF /* Pods_GlobualaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GlobualaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93F88166111A6B3E5C0C1127 /* Pods_Globuala_GlobualaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Globuala_GlobualaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D5E7CB8FD7E9C2B728DFB65 /* Pods-Globuala-GlobualaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Globuala-GlobualaUITests.debug.xcconfig"; path = "Target Support Files/Pods-Globuala-GlobualaUITests/Pods-Globuala-GlobualaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F206C0282DD7091700A42969 /* Globuala.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Globuala.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F206C0382DD7091800A42969 /* GlobualaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GlobualaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F206C0422DD7091800A42969 /* GlobualaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GlobualaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -32,16 +47,22 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		F206C02A2DD7091700A42969 /* Globuala */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = Globuala;
 			sourceTree = "<group>";
 		};
 		F206C03B2DD7091800A42969 /* GlobualaTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = GlobualaTests;
 			sourceTree = "<group>";
 		};
 		F206C0452DD7091800A42969 /* GlobualaUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = GlobualaUITests;
 			sourceTree = "<group>";
 		};
@@ -52,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCCD515307E2BA66E49BA0CF /* Pods_Globuala.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D1763C435EE6D0BE6446F92 /* Pods_GlobualaTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,12 +89,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FB856DE9D9E34AAF486D0E1F /* Pods_Globuala_GlobualaUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8FB4B92281D2BACDF984EA37 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				65DC4F2556F8D85DB90D9196 /* Pods_Globuala.framework */,
+				93F88166111A6B3E5C0C1127 /* Pods_Globuala_GlobualaUITests.framework */,
+				831A85C78DF4AA45BD580BDF /* Pods_GlobualaTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DDB7E7989DC5AC5E99E1515E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				82F19A54A46546A0549C9D30 /* Pods-Globuala.debug.xcconfig */,
+				81AC748758EE5C37D2670F89 /* Pods-Globuala.release.xcconfig */,
+				9D5E7CB8FD7E9C2B728DFB65 /* Pods-Globuala-GlobualaUITests.debug.xcconfig */,
+				4FF51198B5BBC6776A9F05E2 /* Pods-Globuala-GlobualaUITests.release.xcconfig */,
+				3DE8C63FF8D38E64F0C06C8F /* Pods-GlobualaTests.debug.xcconfig */,
+				19CF6E2D0B35A9318F966CE1 /* Pods-GlobualaTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		F206C01F2DD7091700A42969 = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +127,8 @@
 				F206C03B2DD7091800A42969 /* GlobualaTests */,
 				F206C0452DD7091800A42969 /* GlobualaUITests */,
 				F206C0292DD7091700A42969 /* Products */,
+				DDB7E7989DC5AC5E99E1515E /* Pods */,
+				8FB4B92281D2BACDF984EA37 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,9 +149,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F206C04C2DD7091800A42969 /* Build configuration list for PBXNativeTarget "Globuala" */;
 			buildPhases = (
+				DD353882FA0CE68DA6951883 /* [CP] Check Pods Manifest.lock */,
 				F206C0242DD7091700A42969 /* Sources */,
 				F206C0252DD7091700A42969 /* Frameworks */,
 				F206C0262DD7091700A42969 /* Resources */,
+				6919D90B26DD7B90C6158C2D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -111,8 +163,6 @@
 				F206C02A2DD7091700A42969 /* Globuala */,
 			);
 			name = Globuala;
-			packageProductDependencies = (
-			);
 			productName = Globuala;
 			productReference = F206C0282DD7091700A42969 /* Globuala.app */;
 			productType = "com.apple.product-type.application";
@@ -121,6 +171,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F206C04F2DD7091800A42969 /* Build configuration list for PBXNativeTarget "GlobualaTests" */;
 			buildPhases = (
+				874C07FC4F902177AD5EA538 /* [CP] Check Pods Manifest.lock */,
 				F206C0342DD7091800A42969 /* Sources */,
 				F206C0352DD7091800A42969 /* Frameworks */,
 				F206C0362DD7091800A42969 /* Resources */,
@@ -134,8 +185,6 @@
 				F206C03B2DD7091800A42969 /* GlobualaTests */,
 			);
 			name = GlobualaTests;
-			packageProductDependencies = (
-			);
 			productName = GlobualaTests;
 			productReference = F206C0382DD7091800A42969 /* GlobualaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -144,9 +193,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F206C0522DD7091800A42969 /* Build configuration list for PBXNativeTarget "GlobualaUITests" */;
 			buildPhases = (
+				773A2B79E14EFB83F5F8E6D6 /* [CP] Check Pods Manifest.lock */,
 				F206C03E2DD7091800A42969 /* Sources */,
 				F206C03F2DD7091800A42969 /* Frameworks */,
 				F206C0402DD7091800A42969 /* Resources */,
+				E6F80C0D43774D63E154D944 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -157,8 +208,6 @@
 				F206C0452DD7091800A42969 /* GlobualaUITests */,
 			);
 			name = GlobualaUITests;
-			packageProductDependencies = (
-			);
 			productName = GlobualaUITests;
 			productReference = F206C0422DD7091800A42969 /* GlobualaUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -230,6 +279,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6919D90B26DD7B90C6158C2D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Globuala/Pods-Globuala-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Globuala/Pods-Globuala-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Globuala/Pods-Globuala-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		773A2B79E14EFB83F5F8E6D6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Globuala-GlobualaUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		874C07FC4F902177AD5EA538 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GlobualaTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD353882FA0CE68DA6951883 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Globuala-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E6F80C0D43774D63E154D944 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Globuala-GlobualaUITests/Pods-Globuala-GlobualaUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Globuala-GlobualaUITests/Pods-Globuala-GlobualaUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Globuala-GlobualaUITests/Pods-Globuala-GlobualaUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F206C0242DD7091700A42969 /* Sources */ = {
@@ -390,6 +542,7 @@
 		};
 		F206C04D2DD7091800A42969 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82F19A54A46546A0549C9D30 /* Pods-Globuala.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -418,6 +571,7 @@
 		};
 		F206C04E2DD7091800A42969 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81AC748758EE5C37D2670F89 /* Pods-Globuala.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -446,6 +600,7 @@
 		};
 		F206C0502DD7091800A42969 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DE8C63FF8D38E64F0C06C8F /* Pods-GlobualaTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -464,6 +619,7 @@
 		};
 		F206C0512DD7091800A42969 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19CF6E2D0B35A9318F966CE1 /* Pods-GlobualaTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -482,6 +638,7 @@
 		};
 		F206C0532DD7091800A42969 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D5E7CB8FD7E9C2B728DFB65 /* Pods-Globuala-GlobualaUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -498,6 +655,7 @@
 		};
 		F206C0542DD7091800A42969 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FF51198B5BBC6776A9F05E2 /* Pods-Globuala-GlobualaUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
