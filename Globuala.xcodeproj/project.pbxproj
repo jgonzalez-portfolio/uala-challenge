@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		9D1763C435EE6D0BE6446F92 /* Pods_GlobualaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831A85C78DF4AA45BD580BDF /* Pods_GlobualaTests.framework */; };
 		FB856DE9D9E34AAF486D0E1F /* Pods_Globuala_GlobualaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93F88166111A6B3E5C0C1127 /* Pods_Globuala_GlobualaUITests.framework */; };
-		FCCD515307E2BA66E49BA0CF /* Pods_Globuala.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DC4F2556F8D85DB90D9196 /* Pods_Globuala.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +41,7 @@
 		F206C0282DD7091700A42969 /* Globuala.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Globuala.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F206C0382DD7091800A42969 /* GlobualaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GlobualaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F206C0422DD7091800A42969 /* GlobualaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GlobualaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2D412F32DD998F500BF061E /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -67,7 +67,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCCD515307E2BA66E49BA0CF /* Pods_Globuala.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +92,7 @@
 		8FB4B92281D2BACDF984EA37 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F2D412F32DD998F500BF061E /* Alamofire.framework */,
 				65DC4F2556F8D85DB90D9196 /* Pods_Globuala.framework */,
 				93F88166111A6B3E5C0C1127 /* Pods_Globuala_GlobualaUITests.framework */,
 				831A85C78DF4AA45BD580BDF /* Pods_GlobualaTests.framework */,
@@ -543,6 +543,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Globuala/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -572,6 +573,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Globuala/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

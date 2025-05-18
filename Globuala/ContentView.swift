@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct ContentView: View {
     var body: some View {
@@ -16,6 +17,13 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .padding()
+        .onAppear {
+            let networking = NetworkManager()
+            Task {
+                let cities =  await networking.requestCities()
+                print(cities)
+            }
+        }
     }
 }
 
