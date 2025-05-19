@@ -11,3 +11,7 @@ public enum NetworkError: String, Error {
     case unwrapperError = "There was an error during the unwrap data"
     case failWithQuery = "No reults"
 }
+
+public enum FetchCitiesError: String, Error {
+    case repositoryNotFound = "Repository not found"
+}

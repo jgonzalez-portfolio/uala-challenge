@@ -7,14 +7,14 @@
 
 import Foundation
 
-protocol CitiesRemoteDataSourceProtocol {
+protocol CitiesRemoteDataSource {
     func getCities() async -> Result<[CityDTO], NetworkError>
 }
 
-class CitiesRemoteDataSource: CitiesRemoteDataSourceProtocol {
+class CitiesRemoteDataSourceImpl: CitiesRemoteDataSource {
     private let networkManager: NetworkManagerProtocol
 
-    init(networkManager: NetworkManagerProtocol = DI.shared.resolve(NetworkManagerProtocol.self)) {
+    init(networkManager: NetworkManagerProtocol) {
         self.networkManager = networkManager
     }
 

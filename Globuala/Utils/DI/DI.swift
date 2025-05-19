@@ -25,7 +25,8 @@ class DI {
 
 func buildContainer() -> Container {
     let container = Container()
-
+    
+    
     container.register(Coordinator.self) { _ in
         return Coordinator()
     }
@@ -34,10 +35,22 @@ func buildContainer() -> Container {
         return NetworkManager()
     }
 
-    container.register(CitiesRemoteDataSourceProtocol.self) { resolver in
+    container.register(CitiesRemoteDataSource.self) { resolver in
         let networkManager = resolver.resolve(NetworkManagerProtocol.self)!
-        return CitiesRemoteDataSource(networkManager: networkManager)
+        return CitiesRemoteDataSourceImpl(networkManager: networkManager)
     }
-
+    
+    container.register(CitiesRepository.self) { resolver in
+        return CitiesRepositoryImpl(dataSource: resolver.resolve(CitiesRemoteDataSource.self)!)
+    }
+    
+    container.register(FetchCitiesUseCase.self) { resolver in
+        return FetchCitiesUseCase(repository: resolver.resolve(CitiesRepository.self)!)
+    }
+    
+    container.register(CitiesViewModel.self) { resolver in
+        return CitiesViewModel(fetchCitiesUseCase: resolver.resolve(FetchCitiesUseCase.self)!)
+    }
+    
     return container
 }

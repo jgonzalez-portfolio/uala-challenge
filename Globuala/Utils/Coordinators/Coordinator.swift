@@ -48,6 +48,7 @@ class Coordinator: ObservableObject {
         switch page {
         case .main: MainView()
         case .login: LogInView()
+        case .cities: CitiesView()
         }
     }
     

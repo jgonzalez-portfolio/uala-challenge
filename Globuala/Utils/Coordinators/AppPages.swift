@@ -8,6 +8,7 @@
 enum AppPages: Hashable {
     case main
     case login
+    case cities
 }
 
 enum Sheet: String, Identifiable {

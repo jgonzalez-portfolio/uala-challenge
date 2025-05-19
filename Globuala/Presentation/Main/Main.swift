@@ -14,7 +14,7 @@ struct MainView: View {
         VStack {
             Spacer()
             Button {
-                coordinator.push(page: .login)
+                coordinator.push(page: .cities)
             } label: {
                 Text("Comencemos")
                     .font(.title3)
