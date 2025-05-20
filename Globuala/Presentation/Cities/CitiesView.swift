@@ -18,6 +18,8 @@ struct CitiesView: View {
         static let loading = "Cargando..."
         static let selectCity = "Selecciona una ciudad"
         static let welcome = "Bienvenido a la app"
+        static let icon = "heart"
+        static let iconFill = "heart.fill"
     }
     
     var body: some View {
@@ -64,13 +66,25 @@ struct CitiesView: View {
     func buildCities(_ cities: [City]) -> some View {
         List(selection: $selectedCity) {
             ForEach(cities) { city in
-                VStack(alignment: .leading) {
-                    Text("\(city.name), \(city.country)")
-                        .tag(city.id)
-                        .font(.headline)
-                    Text("Lat: \(city.coordinates.latitude), Lon: \(city.coordinates.longitude)")
-                        .font(.subheadline)
-                        
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("\(city.name), \(city.country)")
+                            .tag(city.id)
+                            .font(.headline)
+                        Text("Lat: \(city.coordinates.latitude), Lon: \(city.coordinates.longitude)")
+                            .font(.subheadline)
+                            
+                    }
+                    Spacer()
+                    Button {
+                        viewModel.toggleFavorite(for: city.id)
+                    } label: {
+                        Image(systemName: viewModel.isFavorite(city.id) ? Constants.iconFill : Constants.icon)
+                    }
+                    .buttonStyle(.borderless)
+                    .foregroundStyle(viewModel.isFavorite(city.id) ? .red : .secondary)
+                    .tag(city.id)
+                    
                 }
             }
         }

@@ -17,6 +17,7 @@ enum CitiesUIState {
 final class CitiesViewModel: ObservableObject {
     
     @Published private(set) var state: CitiesUIState = .idle
+    @Published var favoriteCityIDs: Set<Int> = []
     let fetchCitiesUseCase: FetchCitiesUseCase
     
     init(fetchCitiesUseCase: FetchCitiesUseCase) {
@@ -38,5 +39,18 @@ final class CitiesViewModel: ObservableObject {
     func sortCities(_ cities: [City]) -> [City] {
         let sortedCities = cities.sorted { $0.name < $1.name }
         return sortedCities
+    }
+    
+
+    func toggleFavorite(for cityId: Int) {
+        if favoriteCityIDs.contains(cityId) {
+            favoriteCityIDs.remove(cityId)
+        } else {
+            favoriteCityIDs.insert(cityId)
+        }
+    }
+
+    func isFavorite(_ cityId: Int) -> Bool {
+        favoriteCityIDs.contains(cityId)
     }
 }
