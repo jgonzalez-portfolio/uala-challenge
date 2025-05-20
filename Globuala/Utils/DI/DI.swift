@@ -55,5 +55,9 @@ func buildContainer() -> Container {
         return CitiesViewModel(fetchCitiesUseCase: resolver.resolve(FetchCitiesUseCase.self)!)
     }
     
+    container.register(CityDetailViewModel.self) { resolver in
+        return CityDetailViewModel()
+    }
+    
     return container
 }

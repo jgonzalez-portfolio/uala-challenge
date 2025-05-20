@@ -9,7 +9,10 @@ import SwiftUI
 
 struct CitiesView: View {
     @StateObject private var viewModel: CitiesViewModel = DI.shared.resolve(CitiesViewModel.self)
+    @EnvironmentObject private var coordinator: Coordinator
+    @State private var selectedCity: Int?
     var body: some View {
+        NavigationSplitView {
             Group {
                 switch viewModel.state {
                 case .idle:
@@ -17,18 +20,31 @@ struct CitiesView: View {
                 case .loading:
                     ProgressView("Cargando...")
                 case .success(let cities):
-                    List(cities, id: \.id) { city in
-                        Text(city.name)
+                    List(selection: $selectedCity) {
+                        ForEach(cities) { city in
+                            Text(city.name)
+                                .tag(city.id)
+                        }
                     }
+                    
                 case .failure(let string):
                     Text(string)
                 }
             }
             .onAppear {
-                Task { await viewModel.fetchCities() }
+                if case .idle = viewModel.state {
+                    Task { await viewModel.fetchCities() }
+                }
             }
             .navigationTitle("Ciudades")
-        
+        } detail: {
+            if let city = selectedCity {
+                coordinator.build(page: .cityDetail(cityId: city))
+            } else {
+                Text("Selecciona una ciudad")
+                    .foregroundStyle(.secondary)
+            }
+        }
     }
 }
 

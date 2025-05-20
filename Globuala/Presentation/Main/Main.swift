@@ -10,22 +10,7 @@ import SwiftUI
 struct MainFlowView: View {
     @EnvironmentObject private var coordinator: Coordinator
     var body: some View {
-        
-        NavigationSplitView {
-            coordinator.build(page: .cities)
-                .navigationDestination(for: AppPages.self) { page in
-                    coordinator.build(page: page)
-                }
-                .sheet(item: $coordinator.sheet) { sheet in
-                    coordinator.buildSheet(sheet: sheet)
-                }
-                .fullScreenCover(item: $coordinator.fullScreenCover) { item in
-                    coordinator.buildCover(cover: item)
-                }
-        } detail: {
-            Text("Detail View")
-                
-        }
+        coordinator.build(page: .cities)
     }
 }
 
