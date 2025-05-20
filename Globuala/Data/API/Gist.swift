@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Alamofire
 
 public protocol FoodEndpointParameters {
     var toDictionary: [String: Any] { get }
@@ -24,11 +23,11 @@ public enum UalaGistAPI {
 
 extension UalaGistAPI: EndPointType {
     
-    var baseURL: String {
+    var baseURL: URL? {
         switch NetworkManager.environment {
-        case .qa: return ""
-        case .production: return "https://gist.githubusercontent.com"
-        case .mock: return "http://localhost:3000"
+        case .qa: return URL(string: "")
+        case .production: return URL(string: "https://gist.githubusercontent.com")
+        case .mock: return URL(string: "http://localhost:3000")
         }
     }
     
@@ -53,10 +52,10 @@ extension UalaGistAPI: EndPointType {
         }
     }
     
-    var task: HTTPTask? {
+    var task: HTTPTask {
         switch self {
         default:
-            return nil
+            return .request
         }
     }
     

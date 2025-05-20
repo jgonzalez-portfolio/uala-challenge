@@ -5,20 +5,27 @@
 //  Created by Joni Gonzalez on 16/05/2025.
 //
 
-import Alamofire
+import Foundation
+
+typealias Parameters = [String: Any]
+typealias HTTPHeaders = [String: String]
 
 protocol EndPointType {
-    var baseURL: String { get }
+    var baseURL: URL? { get }
     var path: String { get }
     var httpMethod: HTTPMethod { get }
+    var task: HTTPTask { get }
     var headers: HTTPHeaders? { get }
-    var task: HTTPTask? { get }
-    var parameters: Parameters? { get }
 }
 
-extension EndPointType {
-    var endpointURL: URLConvertible {
-        return self.baseURL.appending(path)
-    }
+enum HTTPMethod: String {
+    case get = "GET"
+    case post = "POST"
+    case put = "PUT"
+    case delete = "DELETE"
+}
+
+enum HTTPTask {
+    case request
 }
 

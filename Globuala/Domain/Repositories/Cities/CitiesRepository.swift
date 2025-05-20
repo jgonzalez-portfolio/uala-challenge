@@ -12,8 +12,8 @@ protocol CitiesRepository {
 final class CitiesRepositoryImpl: CitiesRepository {
     private let remoteDataSource: CitiesRemoteDataSource
     
-    init(dataSource: CitiesRemoteDataSource) {
-        self.remoteDataSource = dataSource
+    init() {
+        self.remoteDataSource = CitiesRemoteDataSourceImpl()
     }
     
     func fetchCities() async throws -> [City] {

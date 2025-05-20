@@ -14,8 +14,8 @@ protocol CitiesRemoteDataSource {
 class CitiesRemoteDataSourceImpl: CitiesRemoteDataSource {
     private let networkManager: NetworkManagerProtocol
 
-    init(networkManager: NetworkManagerProtocol) {
-        self.networkManager = networkManager
+    init() {
+        self.networkManager = NetworkManager()
     }
 
     func getCities() async -> Result<[CityDTO], NetworkError> {

@@ -10,14 +10,15 @@ import MapKit
 
 struct CitiesView: View {
     
-    @StateObject private var viewModel: CitiesViewModel = DI.shared.resolve(CitiesViewModel.self)
-    @EnvironmentObject private var coordinator: Coordinator
+    @StateObject private var viewModel: CitiesViewModel = .init()
     @State private var selectedCity: Int?
     @State private var searchText: String = ""
     @State private var mapPosition = MapCameraPosition.region(
         MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
-            span: MKCoordinateSpan(latitudeDelta: 10.0, longitudeDelta: 10.0)
+            center: CLLocationCoordinate2D(latitude: 0.0,
+                                           longitude: 0.0),
+            span: MKCoordinateSpan(latitudeDelta: 10.0,
+                                   longitudeDelta: 10.0)
         )
     )
     
@@ -46,11 +47,14 @@ struct CitiesView: View {
             }
             .onAppear {
                 if case .idle = viewModel.state {
-                    Task { await viewModel.fetchCities() }
+                    
+                    Task {
+                        await viewModel.fetchCities()
+                    }
                 }
             }
             .navigationTitle(Constants.title)
-            .searchable(text: $searchText, prompt: "Buscar ciudad")
+            .searchable(text: $viewModel.searchText, prompt: "Buscar ciudad")
         } detail: {
             buildMap()
         }
@@ -64,6 +68,9 @@ struct CitiesView: View {
                 span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
             ))
         })
+        .onChange(of: searchText) { newValue in
+            viewModel.filterCities(with: newValue)
+        }
     }
     
     @ViewBuilder
@@ -96,7 +103,7 @@ struct CitiesView: View {
     @ViewBuilder
     func buildCities() -> some View {
         List(selection: $selectedCity) {
-            ForEach(viewModel.cities) { city in
+            ForEach(viewModel.filteredCities) { city in
                 HStack {
                     VStack(alignment: .leading) {
                         Text("\(city.name), \(city.country)")

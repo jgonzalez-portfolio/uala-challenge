@@ -5,7 +5,6 @@
 //  Created by Joni Gonzalez on 16/05/2025.
 //
 
-import Alamofire
 import Foundation
 
 protocol NetworkRouterProtocol: AnyObject {

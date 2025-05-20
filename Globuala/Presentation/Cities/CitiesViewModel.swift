@@ -6,6 +6,7 @@
 //
 
 import Combine
+import Foundation
 
 enum CitiesUIState {
     case idle
@@ -17,21 +18,26 @@ enum CitiesUIState {
 final class CitiesViewModel: ObservableObject {
     
     @Published private(set) var state: CitiesUIState = .idle
-    @Published var favoriteCityIDs: Set<Int> = []
-    @Published var cities: [City] = []
-    let fetchCitiesUseCase: FetchCitiesUseCase
+    @Published private(set) var favoriteCityIDs: Set<Int> = []
+    @Published private(set) var cities: [City] = []
+    @Published private(set) var filteredCities: [City] = []
+    @Published var searchText: String = ""
     
-    init(fetchCitiesUseCase: FetchCitiesUseCase) {
-        self.fetchCitiesUseCase = fetchCitiesUseCase
+    private var cancellables = Set<AnyCancellable>()
+    
+    init() {
+        setupBindings()
     }
-    
     
     @MainActor
     func fetchCities() async {
         state = .loading
         do {
-            let citiesRsponse = try await fetchCitiesUseCase.execute()
-            cities = sortCities(citiesRsponse)
+            let repo = CitiesRepositoryImpl()
+            let useCase = FetchCitiesUseCase(repository: repo)
+            let citiesResponse = try await useCase.execute()
+            cities = sortCities(citiesResponse)
+            filterCities(with: searchText)
             state = .success
         } catch {
             state = .failure("Failed to fetch cities")
@@ -59,5 +65,25 @@ final class CitiesViewModel: ObservableObject {
     @MainActor
     func findCity(by id: Int) -> City? {
         return cities.first { $0.id == id }
+    }
+    
+    func filterCities(with query: String) {
+        if query.isEmpty {
+            filteredCities = cities
+        } else {
+            filteredCities = cities.filter { city in
+                let cityString = "\(city.name), \(city.country)"
+                return cityString.lowercased().hasPrefix(query.lowercased())
+            }
+        }
+    }
+    
+    private func setupBindings() {
+        $searchText
+            .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
+            .sink { [weak self] query in
+                self?.filterCities(with: query)
+            }
+            .store(in: &cancellables)
     }
 }
