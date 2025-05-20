@@ -10,7 +10,7 @@ import Combine
 enum CitiesUIState {
     case idle
     case loading
-    case success([City])
+    case success
     case failure(String)
 }
 
@@ -18,6 +18,7 @@ final class CitiesViewModel: ObservableObject {
     
     @Published private(set) var state: CitiesUIState = .idle
     @Published var favoriteCityIDs: Set<Int> = []
+    @Published var cities: [City] = []
     let fetchCitiesUseCase: FetchCitiesUseCase
     
     init(fetchCitiesUseCase: FetchCitiesUseCase) {
@@ -29,8 +30,9 @@ final class CitiesViewModel: ObservableObject {
     func fetchCities() async {
         state = .loading
         do {
-            let cities = try await fetchCitiesUseCase.execute()
-            state = .success(sortCities(cities))
+            let citiesRsponse = try await fetchCitiesUseCase.execute()
+            cities = sortCities(citiesRsponse)
+            state = .success
         } catch {
             state = .failure("Failed to fetch cities")
         }
@@ -52,5 +54,10 @@ final class CitiesViewModel: ObservableObject {
 
     func isFavorite(_ cityId: Int) -> Bool {
         favoriteCityIDs.contains(cityId)
+    }
+    
+    @MainActor
+    func findCity(by id: Int) -> City? {
+        return cities.first { $0.id == id }
     }
 }

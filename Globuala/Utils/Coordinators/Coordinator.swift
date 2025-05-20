@@ -12,8 +12,6 @@ import SwiftUI
 
 class Coordinator: ObservableObject {
     @Published var path: NavigationPath = NavigationPath()
-    @Published var sheet: Sheet?
-    @Published var fullScreenCover: FullScreenCover?
     
     func push(page: AppPages) {
         self.path.append(page)
@@ -27,23 +25,6 @@ class Coordinator: ObservableObject {
         path.removeLast(path.count)
     }
     
-    func presentSheet(_ sheet: Sheet) {
-        self.sheet = sheet
-    }
-    
-    func presentFullScreenCover(_ cover: FullScreenCover) {
-        self.fullScreenCover = cover
-    }
-    
-    func dismissSheet() {
-        self.sheet = nil
-    }
-    
-    func dismissCover() {
-        self.fullScreenCover = nil
-    }
-    
-    
     @ViewBuilder
     func build(page: AppPages) -> some View {
         switch page {
@@ -53,27 +34,7 @@ class Coordinator: ObservableObject {
             LogInView()
         case .cities:
             CitiesView()
-        case .cityDetail(cityId: let cityId):
-            {
-                let cityDetailViewModel = DI.shared.resolve(CityDetailViewModel.self)
-                cityDetailViewModel.setCityId(cityId)
-                return CityDetailView()
-            }()
         case .walkthrough: WalkthroughView()
-        }
-    }
-    
-    @ViewBuilder
-    func buildSheet(sheet: Sheet) -> some View {
-        switch sheet {
-        case .forgotPassword: ForgotPasswordView()
-        }
-    }
-    
-    @ViewBuilder
-    func buildCover(cover: FullScreenCover) -> some View {
-        switch cover {
-        case .signup: SignUpView()
         }
     }
 }

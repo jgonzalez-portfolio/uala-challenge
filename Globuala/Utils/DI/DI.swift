@@ -12,7 +12,7 @@ class DI {
 
     static let shared = DI()
 
-    private var container = buildContainer()
+    var container = buildContainer()
 
     func resolve<T>(_ type: T.Type) -> T {
         container.resolve(T.self)!
@@ -53,10 +53,6 @@ func buildContainer() -> Container {
     
     container.register(CitiesViewModel.self) { resolver in
         return CitiesViewModel(fetchCitiesUseCase: resolver.resolve(FetchCitiesUseCase.self)!)
-    }
-    
-    container.register(CityDetailViewModel.self) { resolver in
-        return CityDetailViewModel()
     }
     
     return container

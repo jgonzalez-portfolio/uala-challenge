@@ -11,22 +11,5 @@ enum AppPages: Hashable {
     case main
     case login
     case cities
-    case cityDetail(cityId: Int)
     case walkthrough
-}
-
-enum Sheet: String, Identifiable {
-    var id: String {
-        self.rawValue
-    }
-    
-    case forgotPassword
-}
-
-enum FullScreenCover: String, Identifiable {
-    var id: String {
-        self.rawValue
-    }
-    
-    case signup
 }

@@ -6,12 +6,20 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct CitiesView: View {
     
     @StateObject private var viewModel: CitiesViewModel = DI.shared.resolve(CitiesViewModel.self)
     @EnvironmentObject private var coordinator: Coordinator
     @State private var selectedCity: Int?
+    @State private var searchText: String = ""
+    @State private var mapPosition = MapCameraPosition.region(
+        MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: 0.0, longitude: 0.0),
+            span: MKCoordinateSpan(latitudeDelta: 10.0, longitudeDelta: 10.0)
+        )
+    )
     
     struct Constants {
         static let title = "Ciudades"
@@ -30,8 +38,8 @@ struct CitiesView: View {
                     buildIdle()
                 case .loading:
                     buildLoading()
-                case .success(let cities):
-                    buildCities(cities)
+                case .success:
+                    buildCities()
                 case .failure(let string):
                     buildError(string)
                 }
@@ -42,13 +50,36 @@ struct CitiesView: View {
                 }
             }
             .navigationTitle(Constants.title)
+            .searchable(text: $searchText, prompt: "Buscar ciudad")
         } detail: {
-            if let city = selectedCity {
-                coordinator.build(page: .cityDetail(cityId: city))
-            } else {
-                Text(Constants.selectCity)
-                    .foregroundStyle(.secondary)
+            buildMap()
+        }
+        .onChange(of: selectedCity, { _, newCityId in
+            guard let id = newCityId,
+                  let city = viewModel.findCity(by: id) else { return }
+            selectedCity = city.id
+            mapPosition = .region(MKCoordinateRegion(
+                center: CLLocationCoordinate2D(latitude: city.coordinates.latitude,
+                                               longitude: city.coordinates.longitude),
+                span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
+            ))
+        })
+    }
+    
+    @ViewBuilder
+    func buildMap() -> some View {
+        if let cityId = selectedCity,
+           let city = viewModel.findCity(by: cityId) {
+            Map(position: $mapPosition) {
+                Marker("Seleccionado",
+                       coordinate: .init(latitude: city.coordinates.latitude,
+                                         longitude: city.coordinates.longitude)
+                )
             }
+            .navigationTitle(city.name)
+        } else {
+            Text(Constants.selectCity)
+                .foregroundStyle(.secondary)
         }
     }
     
@@ -63,17 +94,15 @@ struct CitiesView: View {
     }
     
     @ViewBuilder
-    func buildCities(_ cities: [City]) -> some View {
+    func buildCities() -> some View {
         List(selection: $selectedCity) {
-            ForEach(cities) { city in
+            ForEach(viewModel.cities) { city in
                 HStack {
                     VStack(alignment: .leading) {
                         Text("\(city.name), \(city.country)")
-                            .tag(city.id)
                             .font(.headline)
                         Text("Lat: \(city.coordinates.latitude), Lon: \(city.coordinates.longitude)")
                             .font(.subheadline)
-                            
                     }
                     Spacer()
                     Button {
@@ -83,9 +112,8 @@ struct CitiesView: View {
                     }
                     .buttonStyle(.borderless)
                     .foregroundStyle(viewModel.isFavorite(city.id) ? .red : .secondary)
-                    .tag(city.id)
-                    
                 }
+                .tag(city.id)
             }
         }
     }

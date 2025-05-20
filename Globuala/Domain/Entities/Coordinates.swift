@@ -5,7 +5,7 @@
 //  Created by Joni Gonzalez on 18/05/2025.
 //
 
-struct Coordinates {
+struct Coordinates: Hashable {
     let latitude: Double
     let longitude: Double
 }
