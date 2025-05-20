@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct MainFlowView: View {
-    @StateObject private var coordinator = DI.shared.resolve(Coordinator.self)
-    
+    @EnvironmentObject private var coordinator: Coordinator
     var body: some View {
         
         NavigationSplitView {
@@ -27,8 +26,6 @@ struct MainFlowView: View {
             Text("Detail View")
                 
         }
-
-
     }
 }
 
