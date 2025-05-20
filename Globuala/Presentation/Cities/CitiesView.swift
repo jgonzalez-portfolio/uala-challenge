@@ -8,27 +8,23 @@
 import SwiftUI
 
 struct CitiesView: View {
+    
     @StateObject private var viewModel: CitiesViewModel = DI.shared.resolve(CitiesViewModel.self)
     @EnvironmentObject private var coordinator: Coordinator
     @State private var selectedCity: Int?
+    
     var body: some View {
         NavigationSplitView {
             Group {
                 switch viewModel.state {
                 case .idle:
-                    Text("Bienvenido a la app")
+                    buildIdle()
                 case .loading:
-                    ProgressView("Cargando...")
+                    buildLoading()
                 case .success(let cities):
-                    List(selection: $selectedCity) {
-                        ForEach(cities) { city in
-                            Text(city.name)
-                                .tag(city.id)
-                        }
-                    }
-                    
+                    buildCities(cities)
                 case .failure(let string):
-                    Text(string)
+                    buildError(string)
                 }
             }
             .onAppear {
@@ -45,6 +41,33 @@ struct CitiesView: View {
                     .foregroundStyle(.secondary)
             }
         }
+    }
+    
+    @ViewBuilder
+    func buildIdle() -> some View {
+        Text("Bienvenido a la app")
+    }
+    
+    @ViewBuilder
+    func buildLoading() -> some View {
+        ProgressView("Cargando...")
+    }
+    
+    @ViewBuilder
+    func buildCities(_ cities: [City]) -> some View {
+        List(selection: $selectedCity) {
+            ForEach(cities) { city in
+                Text(city.name)
+                    .tag(city.id)
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func buildError(_ error: String) -> some View {
+        Text(error)
+            .foregroundStyle(.red)
+            .padding()
     }
 }
 
