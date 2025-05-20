@@ -1,22 +1,22 @@
 //
-//  LogInView.swift
+//  WalkthroughView.swift
 //  Globuala
 //
-//  Created by Joni Gonzalez on 18/05/2025.
+//  Created by Joni Gonzalez on 19/05/2025.
 //
 
 import SwiftUI
 
-struct LogInView: View {
-    @EnvironmentObject private var coordinator: Coordinator
-    @EnvironmentObject private var sessionManager: SessionManager
+struct WalkthroughView: View {
+    @EnvironmentObject var coordinator: Coordinator
+    
     var body: some View {
         VStack {
             Spacer()
             Button {
-                sessionManager.login()
+                coordinator.push(page: .login)
             } label: {
-                Text("Iniciar Sesión...")
+                Text("Comencemos...")
                     .font(.title3)
                     .foregroundStyle(.white)
                     .padding(16)
@@ -30,5 +30,5 @@ struct LogInView: View {
 }
 
 #Preview {
-    LogInView()
+    WalkthroughView()
 }

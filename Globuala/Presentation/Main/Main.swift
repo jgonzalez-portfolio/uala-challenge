@@ -7,28 +7,25 @@
 
 import SwiftUI
 
-struct MainView: View {
-    @EnvironmentObject private var coordinator: Coordinator
-
+struct MainFlowView: View {
+    @StateObject private var coordinator = DI.shared.resolve(Coordinator.self)
+    
     var body: some View {
-        VStack {
-            Spacer()
-            Button {
-                coordinator.push(page: .cities)
-            } label: {
-                Text("Comencemos")
-                    .font(.title3)
-                    .foregroundStyle(.white)
-                    .padding(16)
-            }
-            .frame(maxWidth: .infinity)
-            .background(Color.blue)
-            .clipShape(.buttonBorder)
+        NavigationStack(path: $coordinator.path) {
+            coordinator.build(page: .cities)
+                .navigationDestination(for: AppPages.self) { page in
+                    coordinator.build(page: page)
+                }
+                .sheet(item: $coordinator.sheet) { sheet in
+                    coordinator.buildSheet(sheet: sheet)
+                }
+                .fullScreenCover(item: $coordinator.fullScreenCover) { item in
+                    coordinator.buildCover(cover: item)
+                }
         }
-        .padding(16)
     }
 }
 
 #Preview {
-    CoordinatorView()
+    AppCoordinatorView()
 }

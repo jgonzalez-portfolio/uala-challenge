@@ -26,6 +26,9 @@ class DI {
 func buildContainer() -> Container {
     let container = Container()
     
+    container.register(SessionManager.self) { _ in
+        return SessionManager()
+    }
     
     container.register(Coordinator.self) { _ in
         return Coordinator()

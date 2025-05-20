@@ -43,12 +43,23 @@ class Coordinator: ObservableObject {
         self.fullScreenCover = nil
     }
     
+    
     @ViewBuilder
     func build(page: AppPages) -> some View {
         switch page {
-        case .main: MainView()
-        case .login: LogInView()
-        case .cities: CitiesView()
+        case .main:
+            MainFlowView()
+        case .login:
+            LogInView()
+        case .cities:
+            CitiesView()
+        case .cityDetail(cityId: let cityId):
+            {
+                let cityDetailViewModel = DI.shared.resolve(CityDetailViewModel.self)
+                cityDetailViewModel.setCityId(cityId)
+                return CityDetail()
+            }()
+        case .walkthrough: WalkthroughView()
         }
     }
     
