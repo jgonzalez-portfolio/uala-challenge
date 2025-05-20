@@ -29,9 +29,14 @@ final class CitiesViewModel: ObservableObject {
         state = .loading
         do {
             let cities = try await fetchCitiesUseCase.execute()
-            state = .success(cities)
+            state = .success(sortCities(cities))
         } catch {
             state = .failure("Failed to fetch cities")
         }
+    }
+    
+    func sortCities(_ cities: [City]) -> [City] {
+        let sortedCities = cities.sorted { $0.name < $1.name }
+        return sortedCities
     }
 }

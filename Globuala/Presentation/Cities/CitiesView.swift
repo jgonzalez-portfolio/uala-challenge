@@ -13,6 +13,13 @@ struct CitiesView: View {
     @EnvironmentObject private var coordinator: Coordinator
     @State private var selectedCity: Int?
     
+    struct Constants {
+        static let title = "Ciudades"
+        static let loading = "Cargando..."
+        static let selectCity = "Selecciona una ciudad"
+        static let welcome = "Bienvenido a la app"
+    }
+    
     var body: some View {
         NavigationSplitView {
             Group {
@@ -32,12 +39,12 @@ struct CitiesView: View {
                     Task { await viewModel.fetchCities() }
                 }
             }
-            .navigationTitle("Ciudades")
+            .navigationTitle(Constants.title)
         } detail: {
             if let city = selectedCity {
                 coordinator.build(page: .cityDetail(cityId: city))
             } else {
-                Text("Selecciona una ciudad")
+                Text(Constants.selectCity)
                     .foregroundStyle(.secondary)
             }
         }
@@ -45,20 +52,26 @@ struct CitiesView: View {
     
     @ViewBuilder
     func buildIdle() -> some View {
-        Text("Bienvenido a la app")
+        Text(Constants.welcome)
     }
     
     @ViewBuilder
     func buildLoading() -> some View {
-        ProgressView("Cargando...")
+        ProgressView(Constants.loading)
     }
     
     @ViewBuilder
     func buildCities(_ cities: [City]) -> some View {
         List(selection: $selectedCity) {
             ForEach(cities) { city in
-                Text(city.name)
-                    .tag(city.id)
+                VStack(alignment: .leading) {
+                    Text("\(city.name), \(city.country)")
+                        .tag(city.id)
+                        .font(.headline)
+                    Text("Lat: \(city.coordinates.latitude), Lon: \(city.coordinates.longitude)")
+                        .font(.subheadline)
+                        
+                }
             }
         }
     }
