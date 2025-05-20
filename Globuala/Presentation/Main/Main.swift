@@ -11,7 +11,8 @@ struct MainFlowView: View {
     @StateObject private var coordinator = DI.shared.resolve(Coordinator.self)
     
     var body: some View {
-        NavigationStack(path: $coordinator.path) {
+        
+        NavigationSplitView {
             coordinator.build(page: .cities)
                 .navigationDestination(for: AppPages.self) { page in
                     coordinator.build(page: page)
@@ -22,7 +23,12 @@ struct MainFlowView: View {
                 .fullScreenCover(item: $coordinator.fullScreenCover) { item in
                     coordinator.buildCover(cover: item)
                 }
+        } detail: {
+            Text("Detail View")
+                
         }
+
+
     }
 }
 

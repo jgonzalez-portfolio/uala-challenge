@@ -57,7 +57,7 @@ class Coordinator: ObservableObject {
             {
                 let cityDetailViewModel = DI.shared.resolve(CityDetailViewModel.self)
                 cityDetailViewModel.setCityId(cityId)
-                return CityDetail()
+                return CityDetailView()
             }()
         case .walkthrough: WalkthroughView()
         }
