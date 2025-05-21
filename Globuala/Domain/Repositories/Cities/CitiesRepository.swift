@@ -7,13 +7,18 @@
 
 protocol CitiesRepository {
     func fetchCities() async throws -> [City]
+    func saveFavoriteCity(city: CityId) throws
+    func removeFavoriteCity(city: CityId) throws
+    func fetchFavoriteCities() -> Set<CityId>
 }
 
 final class CitiesRepositoryImpl: CitiesRepository {
+    private let localDataSource: CitiesLocalDataSource
     private let remoteDataSource: CitiesRemoteDataSource
     
-    init() {
-        self.remoteDataSource = CitiesRemoteDataSourceImpl()
+    init(remoteDataSource: CitiesRemoteDataSource = CitiesRemoteDataSourceImpl()) {
+        self.remoteDataSource = remoteDataSource
+        self.localDataSource = CitiesLocalDataSourceImpl()
     }
     
     func fetchCities() async throws -> [City] {
@@ -24,6 +29,26 @@ final class CitiesRepositoryImpl: CitiesRepository {
         case .failure(let error):
             throw error
         }
+    }
+    
+    func saveFavoriteCity(city: CityId) throws {
+        do {
+            try localDataSource.addCityToFavorites(city)
+        } catch {
+            throw error
+        }
+    }
+    
+    func removeFavoriteCity(city: CityId) throws {
+        do {
+            try localDataSource.removeCityFromFavorites(city)
+        } catch {
+            throw error
+        }
+    }
+    
+    func fetchFavoriteCities() -> Set<CityId> {
+        return localDataSource.getFavoriteCities()
     }
 }
     

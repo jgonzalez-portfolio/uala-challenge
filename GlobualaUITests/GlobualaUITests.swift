@@ -40,4 +40,48 @@ final class GlobualaUITests: XCTestCase {
             }
         }
     }
+
+    @MainActor
+    func testCitiesView() throws {
+        // Launch the app
+        let app = XCUIApplication()
+        app.launch()
+
+        XCTAssertTrue(app.navigationBars["Ciudades"].exists, "Title exist")
+        
+        let timeout = 5.0
+        let citiesList = app.collectionViews.firstMatch
+        let expectation = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == true"),
+            object: citiesList
+        )
+        
+        let result = XCTWaiter.wait(for: [expectation], timeout: timeout)
+        XCTAssertEqual(result, .completed, "appear within \(timeout) seconds")
+        
+        let searchField = app.searchFields.firstMatch
+        XCTAssertTrue(searchField.exists, "Search field should exist")
+        searchField.tap()
+        searchField.typeText("a")
+        
+        sleep(1)
+        
+        if citiesList.cells.count > 0 {
+            let firstCity = citiesList.cells.element(boundBy: 0)
+            firstCity.tap()
+            
+            // Verify map appears
+            XCTAssertTrue(app.maps.firstMatch.exists, "Map should appear after selecting a city")
+            
+            // Test favorite functionality
+            let favoriteButton = firstCity.buttons.matching(
+                NSPredicate(format: "label CONTAINS 'favorite'")
+            ).firstMatch
+            
+            if favoriteButton.exists {
+                favoriteButton.tap()
+                // Verify the button state changed (this would depend on your implementation)
+            }
+        }
+    }
 }

@@ -45,31 +45,28 @@ struct CitiesView: View {
                     buildError(string)
                 }
             }
-            .onAppear {
-                if case .idle = viewModel.state {
-                    
-                    Task {
-                        await viewModel.fetchCities()
-                    }
-                }
-            }
             .navigationTitle(Constants.title)
             .searchable(text: $viewModel.searchText, prompt: "Buscar ciudad")
+            .onChange(of: viewModel.searchText, { _, newValue in
+                viewModel.filterCities(with: newValue)
+            })
         } detail: {
             buildMap()
         }
         .onChange(of: selectedCity, { _, newCityId in
+            selectedCity = newCityId
             guard let id = newCityId,
                   let city = viewModel.findCity(by: id) else { return }
-            selectedCity = city.id
             mapPosition = .region(MKCoordinateRegion(
                 center: CLLocationCoordinate2D(latitude: city.coordinates.latitude,
                                                longitude: city.coordinates.longitude),
                 span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
             ))
         })
-        .onChange(of: searchText) { newValue in
-            viewModel.filterCities(with: newValue)
+        .task {
+            if case .idle = viewModel.state {
+                await viewModel.fetchCities()
+            }
         }
     }
     
@@ -104,23 +101,20 @@ struct CitiesView: View {
     func buildCities() -> some View {
         List(selection: $selectedCity) {
             ForEach(viewModel.filteredCities) { city in
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("\(city.name), \(city.country)")
-                            .font(.headline)
-                        Text("Lat: \(city.coordinates.latitude), Lon: \(city.coordinates.longitude)")
-                            .font(.subheadline)
-                    }
-                    Spacer()
-                    Button {
-                        viewModel.toggleFavorite(for: city.id)
-                    } label: {
-                        Image(systemName: viewModel.isFavorite(city.id) ? Constants.iconFill : Constants.icon)
-                    }
-                    .buttonStyle(.borderless)
-                    .foregroundStyle(viewModel.isFavorite(city.id) ? .red : .secondary)
-                }
+                CityRowView(viewModel: .init(city: city),
+                            isFavorite: viewModel.isFavorite(city.id),
+                            onFavoriteToggle: {
+                    viewModel.toggleFavorite(for: city.id)
+                })
+                
                 .tag(city.id)
+            }
+            if viewModel.hasMorePages {
+                ProgressView()
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .onAppear {
+                        viewModel.loadNextPage()
+                    }
             }
         }
     }
